@@ -1,0 +1,40 @@
+<?php snippet('header') ?>
+
+  <main class="main" role="main">
+
+    <h1><?php echo $page->title()->html() ?></h1>
+
+    <form method="post">
+
+      <?php if($alert): ?>
+      <div class="alert">
+        <ul>
+          <?php foreach($alert as $message): ?>
+          <li><?php echo html($message) ?></li>
+          <?php endforeach ?>
+        </ul>
+      </div>
+      <?php endif ?>
+
+      <div class="field">
+        <label for="name">Name <abbr title="required">*</abbr></label>
+        <input type="text" id="name" name="name">
+      </div>
+
+      <div class="field">
+        <label for="email">Email <abbr title="required">*</abbr></label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="field">
+        <label for="text">Text <abbr title="required">*</abbr></label>
+        <textarea id="text" name="text" required></textarea>
+      </div>
+
+      <input type="submit" name="submit" value="Submit">
+
+    </form>
+
+  </main>
+
+<?php snippet('footer') ?>
