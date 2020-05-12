@@ -14,8 +14,8 @@ Noindextag: no-index
 
 ----
 
-Meta-title: 
+Meta-title: Meta title for contact
 
 ----
 
-Meta-description: 
+Meta-description: meta description for contact

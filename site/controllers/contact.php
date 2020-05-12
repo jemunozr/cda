@@ -40,15 +40,15 @@ return function($site, $pages, $page) {
       // build the email
       $email = email(array(
         'to'      => $site->contact_form_email(),
-        'from'    => 'contactform@getkirby.com',
+        'from'    => 'contactform@triviumteam.com',
         'subject' => 'New contact request',
         'replyTo' => $data['email'],
         'body'    => $body
       ));
 
       if($email->send()) {
-        $alert = array("Your message has been sent.");
-        return compact('alert');
+        $alert_ok = array("Your message has been sent.");
+        return compact('alert_ok');
       } else {
         $alert = array($email->error());
       }

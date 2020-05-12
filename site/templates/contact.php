@@ -9,13 +9,19 @@
           </div>  
           <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">  
             <form method="post">
+                <?php if($alert_ok): ?>
+                <div class="form-group">               
+                    <?php foreach($alert_ok as $message): ?>
+                    <div class="alert alert-success" role="alert"><?php echo html($message) ?></div>
+                    <?php endforeach ?>
+                </div>
+                <?php endif ?>
+
                 <?php if($alert): ?>
                 <div class="form-group">               
-                  <ul>
                     <?php foreach($alert as $message): ?>
-                    <li><?php echo html($message) ?></li>
+                    <div class="alert alert-warning" role="alert"><?php echo html($message) ?></div>
                     <?php endforeach ?>
-                  </ul>
                 </div>
                 <?php endif ?>
 
@@ -31,11 +37,11 @@
 
                 <div class="form-group">
                   <label for="text">HOW CAN WE HELP YOU? * </label><br>
-                  <textarea class="form-group form-field" id="text" name="text" required></textarea>
+                  <textarea class="form-group form-field form-field-textarea" id="text" name="text" required rows="8"></textarea>
                 </div>
                 <div class="form-group">
 
-                  <input class="form-input-button" type="button" name="reset" value="RESET">
+                  <input class="form-input-button" type="button" name="reset" id="reset" value="RESET">
                   <input class="form-input-button" type="submit" name="submit" value="SUBMIT">
 
               </form>
