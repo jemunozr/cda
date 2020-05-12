@@ -1,7 +1,10 @@
 <?php
 
 return function($site, $pages, $page) {
+  
+  $_contact_email = $site->contact_form_email();
 
+  //var_dump($site['contact_form_email']);
   $alert = null;
 
   if(get('submit')) {
@@ -36,19 +39,16 @@ return function($site, $pages, $page) {
 
       // build the email
       $email = email(array(
-        'to'      => 'jemunoz@gmail.com',
+        'to'      => $site->contact_form_email(),
         'from'    => 'contactform@getkirby.com',
         'subject' => 'New contact request',
         'replyTo' => $data['email'],
         'body'    => $body
       ));
 
-      // try to send it and redirect to the
-      // thank you page if it worked
       if($email->send()) {
-        echo "message sent";
-        go('contact');
-      // add the error to the alert list if it failed
+        $alert = array("Your message has been sent.");
+        return compact('alert');
       } else {
         $alert = array($email->error());
       }

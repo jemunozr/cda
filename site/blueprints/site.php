@@ -41,3 +41,6 @@ fields:
     type:  url
     default: https://github.com/alkinkasap
     width: 1/3
+  contact_form_email:
+    label: Send contact form information to
+    type:  email

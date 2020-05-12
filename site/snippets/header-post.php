@@ -6,11 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<?php echo $site->description()->html() ?>">
-    <meta name="keywords" content="<?php echo $page->tags() ?>">
+    <meta name="description" content="<?php echo $page->meta_description()->html() ?>">
+    <meta name="keywords" content="<?php echo $site->keywords()->html() ?>">
     <meta name="author" content="">
-
-    <title><?php echo $site->title()->html() ?> | <?php echo $page->title()->html() ?></title>
+    <meta name="robots" content="<?php echo $page->noIndexTag() ?>">
+    
+    <title><?php echo $site->title()->html() ?> | <?php echo $page->meta_title()->html() ?></title>
 
     <!-- Bootstrap Core CSS -->
     <?php echo css('assets/css/bootstrap.min.css') ?>
@@ -30,12 +31,16 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
+    <?php
+    if($site->has('google_tracker')) {
+      echo $site->google_tracker()->html();
+    }
+    ?>
 
     <?php
-    if($site->has('tracker')) {
-      echo $site->tracker()->html();
-    }
+        if($site->has('facebook')) {
+        echo $site->facebook_tracker()->html();
+        }
     ?>
 
 </head>
@@ -44,7 +49,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container-fluid">
+        <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -53,7 +58,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo url() ?>">Home</a>
+                <!-- <a class="navbar-brand" href="<?php //echo url() ?>">Home</a> -->
+
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="<?php echo url() ?>">
+                        <img alt="Brand" src="<?php echo url() ?>/content/bemo-logo2.png">
+                    </a>
+                </div>
+                
             </div>
 
             <?php snippet('menu') ?>
@@ -64,22 +76,21 @@
     <!-- Set your background image for this header on the line below. -->
 
     <?php if($background = $page->image('cover.jpg')): ?>
-    <header class="intro-header" style="background-image: url(<?php echo $background->url(); ?>)">
+    <header class="intro-header-post" style="background-image: url(<?php echo $background->url(); ?>)">
     <?php elseif($image = $site->image('cover.jpg')): ?>
-    <header class="intro-header" style="background-image: url(<?php echo $image->url() ?>)">
+    <header class="intro-header-post" style="background-image: url(<?php echo $image->url() ?>)">
     <?php endif; ?>
-
 
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1><?php echo $page->title()->kirbytitle() ?></h1>
-                    <hr class="small">
-                    <span class="subheading"><time datetime="<?php echo $page->date('c') ?>"><?php echo $page->date('d.m.Y') ?></span>
-                    <h4><?php echo $page->tags() ?></h4>
+                    
                 </div>
             </div>
         </div>
     </div>
     </header>
+
+
+

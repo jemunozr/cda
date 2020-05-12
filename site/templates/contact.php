@@ -1,40 +1,52 @@
-<?php snippet('header') ?>
+<?php snippet('header-post') ?>
 
-  <main class="main" role="main">
+<main class="main" role="main">
+    <div class="container project">
+      <div class="row">
+          <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+            <?php echo $page->text()->kirbytext(); ?>
+            <br><br>
+          </div>  
+          <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">  
+            <form method="post">
+                <?php if($alert): ?>
+                <div class="form-group">               
+                  <ul>
+                    <?php foreach($alert as $message): ?>
+                    <li><?php echo html($message) ?></li>
+                    <?php endforeach ?>
+                  </ul>
+                </div>
+                <?php endif ?>
 
-    <h1><?php echo $page->title()->html() ?></h1>
+                <div class="form-group">
+                  <label for="name">NAME: *</label><br>
+                  <input class="form-group form-field" type="text" id="name" name="name">
+                </div>
 
-    <form method="post">
+                <div class="form-group">
+                  <label for="email">EMAIL: * </label><br>
+                  <input class="form-group form-field" type="email" id="email" name="email" required>
+                </div>
 
-      <?php if($alert): ?>
-      <div class="alert">
-        <ul>
-          <?php foreach($alert as $message): ?>
-          <li><?php echo html($message) ?></li>
-          <?php endforeach ?>
-        </ul>
+                <div class="form-group">
+                  <label for="text">HOW CAN WE HELP YOU? * </label><br>
+                  <textarea class="form-group form-field" id="text" name="text" required></textarea>
+                </div>
+                <div class="form-group">
+
+                  <input class="form-input-button" type="button" name="reset" value="RESET">
+                  <input class="form-input-button" type="submit" name="submit" value="SUBMIT">
+
+              </form>
+          </div>
+          <br><br><br>
+          <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">            
+            <b>Note:</b> If you are having difficulties with our contact us form above, send us an email to info@bemoacademicconsulting.com (copy & paste the email address)
+          </div>
+          <br><br><br><br>
       </div>
-      <?php endif ?>
-
-      <div class="field">
-        <label for="name">Name <abbr title="required">*</abbr></label>
-        <input type="text" id="name" name="name">
-      </div>
-
-      <div class="field">
-        <label for="email">Email <abbr title="required">*</abbr></label>
-        <input type="email" id="email" name="email" required>
-      </div>
-
-      <div class="field">
-        <label for="text">Text <abbr title="required">*</abbr></label>
-        <textarea id="text" name="text" required></textarea>
-      </div>
-
-      <input type="submit" name="submit" value="Submit">
-
-    </form>
-
-  </main>
+    </div>
+</main>
 
 <?php snippet('footer') ?>
